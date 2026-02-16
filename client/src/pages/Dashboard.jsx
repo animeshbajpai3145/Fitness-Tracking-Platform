@@ -4,6 +4,9 @@ import {counts} from "../utils/data.js";
 import CountsCard from "../components/cards/CountsCard.jsx"
 import WeeklyStatCard from "../components/cards/WeeklyStatCard.jsx"
 import CategoryChart from "../components/cards/CategoryChart.jsx";
+import AddWorkout from "../components/cards/AddWorkout";
+import {useState} from "react";
+import WorkoutCard from './../components/cards/WorkoutCard';
 const Container = styled.div`
 flex:1;
 height: 100%;
@@ -38,15 +41,34 @@ padding : 0px 16px;
 @media(max-width:600px){
 gap:12px;}`;
 
+const Section = styled.div`
+diplay:flex;
+flex-directon:column;
+padding : 0px 16px;
+gap: 22px;
+@media(max-width:600px){
+gap:12px;}`;
+const CardWrapper = styled.div`
+display:flex;
+flex-wrap:wrap;
+justify-content: center;
+gap:20px;
+margin-bottom:100px;
+@media (max-width:600px){
+gap:12px}
+`;
+
+
 
 const Dashboard = () => {
+   const [workout,setWorkout]=useState("");
   const data = {
   totalCaloriesBurnt: 13500,
   totalWorkouts: 6,
   avgCaloriesBurntPerWorkout: 2250,
   totalWeeksCaloriesBurnt: {
-    weeks: ["17th", "18th", "19th", "20th"],
-    caloriesBurned: [10500, 0, 0, 0],
+    weeks: ["17th", "18th", "19th", "20th","21th","22th","23th"],
+    caloriesBurned: [10500, 0, 0, 0,400,700,8000],
   },
   pieChartData: [
     {
@@ -79,15 +101,18 @@ const Dashboard = () => {
             {counts.map((item)=>{
               return  <CountsCard item= {item} data={data}/>
             })}
-            
-           
-         </FlexWrap>
+            </FlexWrap>
           <FlexWrap>
             <WeeklyStatCard data ={data}/>
             < CategoryChart data ={data}/>
-            
-           
-         </FlexWrap>
+            <AddWorkout workout={workout} setWorkout={setWorkout}/>
+          </FlexWrap>
+          <Section>
+            <Title>Todays Workout</Title>
+            <CardWrapper>
+              <WorkoutCard/>
+            </CardWrapper>
+          </Section>
       </Wrapper>
    </Container>
   )
