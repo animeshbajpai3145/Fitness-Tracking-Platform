@@ -111,6 +111,8 @@ const Dashboard = () => {
             <Title>Todays Workout</Title>
             <CardWrapper>
               <WorkoutCard/>
+              <WorkoutCard/>
+              <WorkoutCard/>
             </CardWrapper>
           </Section>
       </Wrapper>
